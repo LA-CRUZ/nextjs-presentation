@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import useSWR from 'swr'
 import fetcher from '../data/fetcher'
+import { useState } from 'react'
 
 function Home() {
     const { data, error } = useSWR('/api/players', fetcher)
 
-    console.log("la list = ", data?.list.list)
+    const [menToKill, setMenToKill] = useState("")
 
     var list = data?.list.list
 
@@ -13,6 +14,13 @@ function Home() {
       list = Object.values(list)
     } else {
       list = []
+    }
+
+    async function kill(e) {
+      console.log("allo")
+      await fetch('http://localhost:3000/api/players/kill/' + menToKill, {
+          method: 'PUT'
+        })
     }
 
     return (
@@ -39,6 +47,12 @@ function Home() {
               })
             } 
           </div>
+
+          <form onSubmit={(e) => {e.preventDefault()}}>
+            <h2>Kill someone</h2>
+            <input type="text" value={menToKill} onChange={(e) => {setMenToKill(e.target.value)}} />
+            <input type="submit" value="Obliterate" onClick={() => kill()} />
+          </form>
         </main>
 
         <footer>
