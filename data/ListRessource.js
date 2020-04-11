@@ -1,4 +1,4 @@
-import GeoRessources from './GeoRessources'
+import GeoRessources from './GeoRessources.ts'
 
 class ListResources {
     constructor(list={}) {
