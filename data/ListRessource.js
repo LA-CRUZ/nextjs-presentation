@@ -22,7 +22,8 @@ list.push(new GeoRessources("etienne"))
 list.push(new GeoRessources("pierre"))
 
 list.get("lucas").addTrophy("React and Vue")
-list.get("mickael").addTrophy("God Designer")
-list.get("etienne").addTrophy("Developpeur polyvalent")
+list.get("mickael").addTrophy("SCSS Master")
+list.get("etienne").addTrophy("Git commit Sepuku")
+list.get("pierre").addTrophy("Wanabe web developer")
 
 module.exports = list;
