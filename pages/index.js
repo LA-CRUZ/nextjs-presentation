@@ -21,9 +21,10 @@ function Home() {
 
     async function kill() {
       if(menToKill !== "") {
-        await fetch('https://mif13-nextjs.now.sh/api/players/kill/' + menToKill, {
+        await fetch('/api/players/kill/' + menToKill, {
           method: 'PUT'
         }).then((json) => {
+          console.log(json)
           if(json.status === 200) {
             setTextModal("Le joueur " + menToKill + " est mort")
             setTitleModal("Ordre executé")
