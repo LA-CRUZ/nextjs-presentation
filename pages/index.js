@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Buttons from '../components/Buttons'
 import useSWR from 'swr'
 import fetcher from '../data/fetcher'
 import { useState } from 'react'
