@@ -45,8 +45,6 @@ function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        {/* <Buttons></Buttons> */}
-
         <main>
           <h1 className="title">
             Bienvenue sur une rapide présentation de <a href="https://nextjs.org">Next.js !</a>
@@ -63,6 +61,7 @@ function Home() {
                     <a href={"/game/" + elem.id} className="card" key={index}>
                       <h3>{elem.id}</h3>
                       <p>Voir les informations en jeu de {elem.id}</p>
+                      <span className={elem.status == 'alive' ? 'alive' : 'dead'}>{elem.status}</span>
                     </a>
                   )
               })
@@ -101,6 +100,7 @@ function Home() {
 
           .Modal {
             position: fixed;
+            top: 0;
             width: 100vw;
             height: 100vh;
             background-color: rgba(125,125,125,0.5);
@@ -200,9 +200,26 @@ function Home() {
           }
 
           .card p {
-            margin: 0;
+            margin-bottom: 2rem;
             font-size: 1.25rem;
             line-height: 1.5;
+
+          }
+
+          span {
+            width: 90%;
+            border-radius: 25px;
+            padding:  0.5rem 1.5rem;
+            color: white;
+            text-transform: uppercase;
+          }
+
+          .alive {
+            background-color: rgb(48, 148, 53);
+          }
+
+          .dead {
+            background-color: rgb(148, 48, 48);
           }
 
           form {
