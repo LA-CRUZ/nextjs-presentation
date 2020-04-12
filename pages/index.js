@@ -13,6 +13,8 @@ function Home() {
 
     var list = data?.list.list
 
+    console.log(list)
+
     if(list) {
       list = Object.values(list)
     } else {
