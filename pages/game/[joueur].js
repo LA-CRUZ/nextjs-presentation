@@ -112,7 +112,7 @@ function Joueur({ data }) {
 export async function getServerSideProps(context) {
     // Fetch data from external API
 
-    let url = 'http://localhost:3000/api/players/' + context.params.joueur
+    let url = 'https://mif13-nextjs.now.sh/api/players/' + context.params.joueur
 
     const res = await fetch(url)
     const data = await res.json()
