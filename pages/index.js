@@ -4,7 +4,7 @@ import fetcher from '../data/fetcher'
 import { useState } from 'react'
 
 function Home() {
-    const { data, error } = useSWR('/api/players', fetcher)
+    const { data, error } = useSWR('/api/players', { fetcher: fetcher, refreshInterval: 1 })
     
     const [titleModal, setTitleModal] = useState("")
     const [textModal, setTextModal] = useState("")
