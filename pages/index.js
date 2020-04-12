@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Buttons from '../components/Buttons'
 import useSWR from 'swr'
 import fetcher from '../data/fetcher'
 import { useState } from 'react'
@@ -29,6 +30,8 @@ function Home() {
           <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
+
+        <Buttons></Buttons>
 
         <main>
           <h1 className="title">
