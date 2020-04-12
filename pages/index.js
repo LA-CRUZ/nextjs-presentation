@@ -21,19 +21,21 @@ function Home() {
     }
 
     async function kill() {
-      await fetch('http://localhost:3000/api/players/kill/' + menToKill, {
-        method: 'PUT'
-      }).then((json) => {
-        if(json.status === 200) {
-          setTextModal("Le joueur " + menToKill + " est mort")
-          setTitleModal("Ordre executé")
-        } else {
-          setTextModal("Le joueur " + menToKill + " n'existe pas")
-          setTitleModal("Erreur")
-        }
+      if(menToKill !== "") {
+        await fetch('http://localhost:3000/api/players/kill/' + menToKill, {
+          method: 'PUT'
+        }).then((json) => {
+          if(json.status === 200) {
+            setTextModal("Le joueur " + menToKill + " est mort")
+            setTitleModal("Ordre executé")
+          } else {
+            setTextModal("Le joueur " + menToKill + " n'existe pas")
+            setTitleModal("Erreur")
+          }
 
-        setModalDisplay(true)
-      })
+          setModalDisplay(true)
+        })
+      }
     }
 
     return (
@@ -79,9 +81,9 @@ function Home() {
           modalDisplay &&
           <div className="Modal">
             <div>
-              <h3>{titleModal}</h3>
+              <h3 className="title">{titleModal}</h3>
               <p>{textModal}</p>
-              <button onClick={() => {setModalDisplay(false)}}>Fermer</button>
+              <button className="btn" onClick={() => {setModalDisplay(false)}}>Fermer</button>
             </div>
           </div>
         }
@@ -98,25 +100,33 @@ function Home() {
           }
 
           .Modal {
-            position: absolute;
+            position: fixed;
             width: 100vw;
             height: 100vh;
             background-color: rgba(125,125,125,0.5);
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
           }
 
           .Modal div {
             width: 50%;
             height: 30rem;
-            background-color: white;
+            background-color: #31394dff;
             border-radius: 25px;
             padding: 3rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             flex-direction: column;
+          }
+
+          .Modal p {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
           }
 
           main {
@@ -229,6 +239,7 @@ function Home() {
             text-transform: uppercase;
             box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
             transition: 0.3s;
+            cursor: pointer;
           }
 
           .btn:hover,
