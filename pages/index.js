@@ -33,6 +33,7 @@ function Home() {
     }
 
     async function kill() {
+      setMenToKill("")
       if(menToKill !== "") {
         await fetch('/api/players/kill/' + menToKill, {
           method: 'PUT'
