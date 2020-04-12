@@ -13,8 +13,6 @@ function Home() {
 
     var list = data?.list.list
 
-    console.log(list)
-
     if(list) {
       list = Object.values(list)
     } else {
@@ -26,7 +24,6 @@ function Home() {
         await fetch('/api/players/kill/' + menToKill, {
           method: 'PUT'
         }).then((json) => {
-          console.log(json)
           if(json.status === 200) {
             setTextModal("Le joueur " + menToKill + " est mort")
             setTitleModal("Ordre executé")
@@ -36,6 +33,10 @@ function Home() {
             setTitleModal("Erreur")
           }
           setModalDisplay(true)
+
+          return json.json()
+        }).then((data) => {
+          console.log(data.list.list.lucas.status)
         })
       }
     }
