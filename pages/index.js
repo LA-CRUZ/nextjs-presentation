@@ -28,10 +28,10 @@ function Home() {
             setTextModal("Le joueur " + menToKill + " est mort")
             setTitleModal("Ordre executé")
           } else {
+            
             setTextModal("Le joueur " + menToKill + " n'existe pas")
             setTitleModal("Erreur")
           }
-
           setModalDisplay(true)
         })
       }
