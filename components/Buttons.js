@@ -1,6 +1,6 @@
 import button1 from '../style/buttonRouge.module.css'
 import button2 from '../style/buttonVert.module.css'
-
+    
 function Buttons(){
     return (
         <>

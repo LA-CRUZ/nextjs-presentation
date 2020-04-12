@@ -1,3 +1,6 @@
+
+
+
 class GeoResources {
     id: string
     role: string
@@ -34,3 +37,7 @@ class GeoResources {
 }
 
 module.exports = GeoResources;
+
+
+
+

@@ -16,14 +16,14 @@ class ListResources {
 
 var list = new ListResources()
 
-list.push(new GeoRessources("mickael"))
-list.push(new GeoRessources("lucas"))
-list.push(new GeoRessources("etienne"))
-list.push(new GeoRessources("pierre"))
+list.push(new GeoRessources("Mickael"))
+list.push(new GeoRessources("Lucas"))
+list.push(new GeoRessources("Étienne"))
+list.push(new GeoRessources("Pierre"))
 
-list.get("lucas").addTrophy("React and Vue")
-list.get("mickael").addTrophy("SCSS Master")
-list.get("etienne").addTrophy("Git commit Sepuku")
-list.get("pierre").addTrophy("Wanabe web developer")
+list.get("Lucas").addTrophy("React and Vue")
+list.get("Mickael").addTrophy("SCSS Master")
+list.get("Étienne").addTrophy("Git commit Sepuku")
+list.get("Pierre").addTrophy("Wanabe web developer")
 
 module.exports = list;

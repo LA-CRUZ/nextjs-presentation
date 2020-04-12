@@ -18,25 +18,28 @@ function Home() {
     }
 
     async function kill(e) {
-      console.log("allo")
       await fetch('http://localhost:3000/api/players/kill/' + menToKill, {
           method: 'PUT'
         })
     }
 
     return (
-      <div className="container">
+      <main className="container">
         <Head>
           <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Buttons></Buttons>
+        {/* <Buttons></Buttons> */}
 
         <main>
           <h1 className="title">
-            Welcome to <a href="https://nextjs.org">Next.js!</a>
+            Bienvenue sur une rapide présentation de <a href="https://nextjs.org">Next.js !</a>
           </h1>
+
+          <p>
+            
+          </p>
 
           <div className="grid">
             {
@@ -44,7 +47,7 @@ function Home() {
                   return (
                     <a href={"/game/" + elem.id} className="card" key={index}>
                       <h3>{elem.id}</h3>
-                      <p>Find in-depth information about {elem.id} game stats</p>
+                      <p>Voir les informations en jeu de {elem.id}</p>
                     </a>
                   )
               })
@@ -52,21 +55,13 @@ function Home() {
           </div>
 
           <form onSubmit={(e) => {e.preventDefault()}}>
-            <h2>Kill someone</h2>
-            <input type="text" value={menToKill} onChange={(e) => {setMenToKill(e.target.value)}} />
-            <input type="submit" value="Obliterate" onClick={() => kill()} />
+            <h2 className="title">Qui voulez-vous tuer dans le jeu?</h2>
+            <div className="container-form">
+              <input type="text" value={menToKill} onChange={(e) => {setMenToKill(e.target.value)}} />
+              <input className="btn" type="submit" value="Tuer" onClick={() => kill()} />
+            </div>
           </form>
         </main>
-
-        <footer>
-          <a
-            href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
-          </a>
-        </footer>
 
         <style jsx>{`
           .container {
@@ -76,6 +71,7 @@ function Home() {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-color: #31394dff;
           }
 
           main {
@@ -83,25 +79,6 @@ function Home() {
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          }
-
-          footer {
-            width: 100%;
-            height: 100px;
-            border-top: 1px solid #eaeaea;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          footer img {
-            margin-left: 0.5rem;
-          }
-
-          footer a {
-            display: flex;
             justify-content: center;
             align-items: center;
           }
@@ -126,47 +103,29 @@ function Home() {
             margin: 0;
             line-height: 1.15;
             font-size: 4rem;
-          }
-
-          .title,
-          .description {
+            color: white;
             text-align: center;
           }
 
-          .description {
-            line-height: 1.5;
-            font-size: 1.5rem;
-          }
-
-          code {
-            background: #fafafa;
-            border-radius: 5px;
-            padding: 0.75rem;
-            font-size: 1.1rem;
-            font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-              DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-          }
-
           .grid {
+            width: 80%;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-
-            max-width: 800px;
             margin-top: 3rem;
           }
 
           .card {
             margin: 1rem;
-            flex-basis: 45%;
-            padding: 1.5rem;
-            text-align: left;
-            color: inherit;
-            text-decoration: none;
-            border: 1px solid #eaeaea;
+            padding: 5rem 1.5rem;
+            text-align: center;
+            color: #31394dff;
+            border: 3px solid #eaeaea;
             border-radius: 10px;
             transition: color 0.15s ease, border-color 0.15s ease;
+            background-color: white;
+            box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+            transition: 0.3s;
           }
 
           .card:hover,
@@ -174,11 +133,15 @@ function Home() {
           .card:active {
             color: #0070f3;
             border-color: #0070f3;
+            transition: 0.3s;
+            transform: scale(1.08); 
           }
 
           .card h3 {
+            text-align: center;
             margin: 0 0 1rem 0;
             font-size: 1.5rem;
+            text-transform: uppercase;
           }
 
           .card p {
@@ -187,11 +150,47 @@ function Home() {
             line-height: 1.5;
           }
 
-          @media (max-width: 600px) {
-            .grid {
-              width: 100%;
-              flex-direction: column;
-            }
+          form {
+            width: 80%;
+            margin: 3rem;
+          }
+
+          .container-form {
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+
+          input {
+            margin: 1rem;
+            padding: 0.5rem 0;
+            width: 60%;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align:center;
+            color: #31394dff;
+          }
+
+          .btn {
+            width: 30%;
+            background-color: white;
+            margin: 1rem;
+            padding: 0.8rem 0rem;
+            text-decoration : none;
+            color: #31394dff;
+            font-size: 1.5rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+            transition: 0.3s;
+          }
+
+          .btn:hover,
+          .btn:focus,
+          .btn:active {
+              transition: 0.3s;
+              transform: scale(1.08); 
           }
         `}</style>
 
@@ -208,7 +207,7 @@ function Home() {
             box-sizing: border-box;
           }
         `}</style>
-      </div>
+      </main>
     )
 }
 
