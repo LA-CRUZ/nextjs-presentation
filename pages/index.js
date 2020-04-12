@@ -6,7 +6,10 @@ import { useState } from 'react'
 
 function Home() {
     const { data, error } = useSWR('/api/players', fetcher)
-
+    
+    const [titleModal, setTitleModal] = useState("")
+    const [textModal, setTextModal] = useState("")
+    const [modalDisplay, setModalDisplay] = useState(false)
     const [menToKill, setMenToKill] = useState("")
 
     var list = data?.list.list
@@ -17,10 +20,20 @@ function Home() {
       list = []
     }
 
-    async function kill(e) {
+    async function kill() {
       await fetch('http://localhost:3000/api/players/kill/' + menToKill, {
-          method: 'PUT'
-        })
+        method: 'PUT'
+      }).then((json) => {
+        if(json.status === 200) {
+          setTextModal("Le joueur " + menToKill + " est mort")
+          setTitleModal("Ordre executé")
+        } else {
+          setTextModal("Le joueur " + menToKill + " n'existe pas")
+          setTitleModal("Erreur")
+        }
+
+        setModalDisplay(true)
+      })
     }
 
     return (
@@ -62,6 +75,16 @@ function Home() {
             </div>
           </form>
         </main>
+        {
+          modalDisplay &&
+          <div className="Modal">
+            <div>
+              <h3>{titleModal}</h3>
+              <p>{textModal}</p>
+              <button onClick={() => {setModalDisplay(false)}}>Fermer</button>
+            </div>
+          </div>
+        }
 
         <style jsx>{`
           .container {
@@ -72,6 +95,28 @@ function Home() {
             justify-content: center;
             align-items: center;
             background-color: #31394dff;
+          }
+
+          .Modal {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(125,125,125,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .Modal div {
+            width: 50%;
+            height: 30rem;
+            background-color: white;
+            border-radius: 25px;
+            padding: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
           }
 
           main {
