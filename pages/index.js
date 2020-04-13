@@ -10,15 +10,29 @@ function Home() {
     const [textModal, setTextModal] = useState("")
     const [modalDisplay, setModalDisplay] = useState(false)
     const [menToKill, setMenToKill] = useState("")
+    // const [isChanged, setIsChanged] = useState(false)
+    // const [bool, setBool] = useState(true)
 
     var list = data?.list.list
     
     if(list) {
       list = Object.values(list)
-
+      // if(bool) {
+      //   setIsChanged(true)
+      //   setBool(false)
+      // }
     } else {
       list = []
     }
+    
+    // const [finalList, setFinalList] = useState(list)
+
+    // if(isChanged) {
+    //   setFinalList(list)
+    //   setIsChanged(false)
+    // }
+
+    console.log("coucou")
 
     async function kill() {
       setMenToKill("")
@@ -35,6 +49,8 @@ function Home() {
             setTitleModal("Erreur")
           }
           setModalDisplay(true)
+
+          return json.json()
         })
       }
     }
