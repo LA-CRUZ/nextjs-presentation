@@ -67,10 +67,6 @@ function Home() {
             Bienvenue sur une rapide présentation de <a href="https://nextjs.org">Next.js !</a>
           </h1>
 
-          <p>
-            
-          </p>
-
           <div className="grid">
             {
               list.map((elem, index) => {
