@@ -4,33 +4,33 @@ import fetcher from '../data/fetcher'
 import { useState } from 'react'
 
 function Home() {
-    const { data, error } = useSWR('/api/players', { fetcher: fetcher, refreshInterval: 0 })
+    const { data, error } = useSWR('/api/players', { fetcher: fetcher, refreshInterval: 100, dedupingInterval: 0 })
     
     const [titleModal, setTitleModal] = useState("")
     const [textModal, setTextModal] = useState("")
     const [modalDisplay, setModalDisplay] = useState(false)
     const [menToKill, setMenToKill] = useState("")
-    const [isChanged, setIsChanged] = useState(false)
-    const [bool, setBool] = useState(true)
+    // const [isChanged, setIsChanged] = useState(false)
+    // const [bool, setBool] = useState(true)
 
     var list = data?.list.list
     
     if(list) {
       list = Object.values(list)
-      if(bool) {
-        setIsChanged(true)
-        setBool(false)
-      }
+      // if(bool) {
+      //   setIsChanged(true)
+      //   setBool(false)
+      // }
     } else {
       list = []
     }
     
-    const [finalList, setFinalList] = useState(list)
+    // const [finalList, setFinalList] = useState(list)
 
-    if(isChanged) {
-      setFinalList(list)
-      setIsChanged(false)
-    }
+    // if(isChanged) {
+    //   setFinalList(list)
+    //   setIsChanged(false)
+    // }
 
     async function kill() {
       setMenToKill("")
@@ -50,7 +50,7 @@ function Home() {
 
           return json.json()
         }).then((data) => {
-          setFinalList(Object.values(data.list.list))
+          //setFinalList(Object.values(data.list.list))
         })
       }
     }
@@ -73,7 +73,7 @@ function Home() {
 
           <div className="grid">
             {
-              finalList.map((elem, index) => {
+              list.map((elem, index) => {
                   return (
                     <a href={"/game/" + elem.id} className="card" key={index}>
                       <h3>{elem.id}</h3>
